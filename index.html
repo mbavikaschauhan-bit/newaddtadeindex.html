@@ -1132,7 +1132,7 @@
 
                     <!-- Add Trade Page -->
                     <div id="add-trade" class="page">
-                        <form id="manual-trade-form" class="space-y-1 max-w-6xl mx-auto">
+                        <form id="manual-trade-form" class="space-y-1 max-w-[800px] mx-auto">
                             <input type="hidden" id="trade-id" name="tradeId">
                             
                             <h2 id="trade-form-title" class="text-3xl font-bold" style="color: var(--text-primary);"></h2>
@@ -1152,11 +1152,11 @@
                             <!-- Trade Tab Content -->
                             <div id="trade-tab-content" class="space-y-6">
                                 <!-- Main Trade Form Container -->
-                                <div class="p-4 rounded-lg shadow-sm my-4 mx-2" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
+                                <div class="py-4 px-3 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
                                     <!-- Trade Details and Execution Details - Centered Layout -->
                                     <div class="flex flex-col items-center space-y-3">
                                         <!-- Trade Details Section -->
-                                        <div class="w-full max-w-4xl">
+                                        <div class="w-full">
                                             <div class="p-3 rounded-md shadow-sm" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color);">
                                                 <h3 class="text-base font-semibold mb-2 border-b pb-1" style="color: var(--text-primary); border-color: var(--border-color);">Trade Details</h3>
                                                 <div class="space-y-2">
@@ -1181,10 +1181,17 @@
                                                     
                                                     <!-- Segment and Direction Row -->
                                                     <div class="grid grid-cols-2 gap-3">
-                                                        <div>
-                                                            <label for="segment-input" class="block text-xs font-medium mb-1" style="color: var(--text-secondary);">Segment</label>
-                                                            <input name="segment" type="text" id="segment-input" class="w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;" value="Equity" readonly>
-                                                        </div>
+                                                    <div>
+                                                        <label for="segment-select" class="block text-xs font-medium mb-1" style="color: var(--text-secondary);">Segment</label>
+                                                        <select name="segment" id="segment-select" class="w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;">
+                                                            <option value="Equity" selected>Equity</option>
+                                                            <option value="F&O">F&O</option>
+                                                            <option value="Currency">Currency</option>
+                                                            <option value="Commodity">Commodity</option>
+                                                            <option value="Debt">Debt</option>
+                                                            <option value="Mutual Fund">Mutual Fund</option>
+                                                        </select>
+                                                    </div>
                                                         <div>
                                                             <label class="block text-xs font-medium mb-1" style="color: var(--text-secondary);">Direction</label>
                                                             <div id="direction-group" class="flex gap-1">
@@ -1203,7 +1210,7 @@
                                         </div>
 
                                         <!-- Execution Details Section -->
-                                        <div class="w-full max-w-4xl">
+                                        <div class="w-full">
                                             <div class="p-3 rounded-md shadow-sm" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color);">
                                                 <h3 class="text-base font-semibold mb-2 border-b pb-1" style="color: var(--text-primary); border-color: var(--border-color);">Execution Details</h3>
                                                 <div class="space-y-2">
@@ -1299,7 +1306,7 @@
 
                                     <!-- Strategy and Outcome Section - Centered below Execution Details -->
                                     <div class="flex justify-center mt-3">
-                                        <div class="w-full max-w-4xl">
+                                        <div class="w-full">
                                             <div class="p-3 rounded-md shadow-sm" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color);">
                                                 <h3 class="text-base font-semibold mb-2 border-b pb-1" style="color: var(--text-primary); border-color: var(--border-color);">Strategy and Outcome</h3>
                                                 <div class="grid grid-cols-2 gap-3">
@@ -1340,87 +1347,94 @@
 
                             <!-- Journal Tab Content -->
                             <div id="journal-tab-content" class="hidden space-y-6">
-                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                                    <!-- Left Column - Psychology -->
-                                    <div class="p-6 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
-                                        <h3 class="text-xl font-semibold mb-6 border-b pb-4" style="color: var(--text-primary); border-color: var(--border-color);">Psychology</h3>
-                                        <div class="space-y-6">
-                                            <div>
-                                                <label for="emotional-state" class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">Emotional State During Trade</label>
-                                                <select name="emotionalState" id="emotional-state" class="w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);">
-                                                    <option value="">Select Emotional state</option>
-                                                    <option value="Calm">Calm</option>
-                                                    <option value="Frustrated">Frustrated</option>
-                                                    <option value="Overconfident">Overconfident</option>
-                                                    <option value="Anxious">Anxious</option>
-                                                    <option value="Impatient">Impatient</option>
-                                                    <option value="Confident">Confident</option>
-                                                    <option value="Fearful">Fearful</option>
-                                                    <option value="Greedy">Greedy</option>
-                                                    <option value="Excited">Excited</option>
-                                                    <option value="Neutral">Neutral</option>
-                                                </select>
-                                            </div>
-                                            <div>
-                                                <label class="block text-sm font-medium mb-3" style="color: var(--text-secondary);">Mistake Made</label>
-                                                <div class="grid grid-cols-2 gap-3">
-                                                    <label class="flex items-center space-x-2 cursor-pointer">
-                                                        <input type="checkbox" name="mistakes" value="Overtrading" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" style="background-color: var(--bg-primary); border-color: var(--border-color);">
-                                                        <span class="text-sm" style="color: var(--text-primary);">Overtrading</span>
-                                                    </label>
-                                                    <label class="flex items-center space-x-2 cursor-pointer">
-                                                        <input type="checkbox" name="mistakes" value="Risked Too Much" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" style="background-color: var(--bg-primary); border-color: var(--border-color);">
-                                                        <span class="text-sm" style="color: var(--text-primary);">Risked Too Much</span>
-                                                    </label>
-                                                    <label class="flex items-center space-x-2 cursor-pointer">
-                                                        <input type="checkbox" name="mistakes" value="Exited Too Late" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" style="background-color: var(--bg-primary); border-color: var(--border-color);">
-                                                        <span class="text-sm" style="color: var(--text-primary);">Exited Too Late</span>
-                                                    </label>
-                                                    <label class="flex items-center space-x-2 cursor-pointer">
-                                                        <input type="checkbox" name="mistakes" value="Ignored signals" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" style="background-color: var(--bg-primary); border-color: var(--border-color);">
-                                                        <span class="text-sm" style="color: var(--text-primary);">Ignored signals</span>
-                                                    </label>
-                                                    <label class="flex items-center space-x-2 cursor-pointer">
-                                                        <input type="checkbox" name="mistakes" value="Ignored Stop loss" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" style="background-color: var(--bg-primary); border-color: var(--border-color);">
-                                                        <span class="text-sm" style="color: var(--text-primary);">Ignored Stop loss</span>
-                                                    </label>
-                                                    <label class="flex items-center space-x-2 cursor-pointer">
-                                                        <input type="checkbox" name="mistakes" value="Revenge signals" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" style="background-color: var(--bg-primary); border-color: var(--border-color);">
-                                                        <span class="text-sm" style="color: var(--text-primary);">Revenge signals</span>
-                                                    </label>
-                                                    <label class="flex items-center space-x-2 cursor-pointer">
-                                                        <input type="checkbox" name="mistakes" value="Exited Too Early" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" style="background-color: var(--bg-primary); border-color: var(--border-color);">
-                                                        <span class="text-sm" style="color: var(--text-primary);">Exited Too Early</span>
-                                                    </label>
-                                                    <label class="flex items-center space-x-2 cursor-pointer">
-                                                        <input type="checkbox" name="mistakes" value="Revenge Trading" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" style="background-color: var(--bg-primary); border-color: var(--border-color);">
-                                                        <span class="text-sm" style="color: var(--text-primary);">Revenge Trading</span>
-                                                    </label>
-                                                    <label class="flex items-center space-x-2 cursor-pointer">
-                                                        <input type="checkbox" name="mistakes" value="No clean Plan" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" style="background-color: var(--bg-primary); border-color: var(--border-color);">
-                                                        <span class="text-sm" style="color: var(--text-primary);">No clean Plan</span>
-                                                    </label>
-                                                    <label class="flex items-center space-x-2 cursor-pointer">
-                                                        <input type="checkbox" name="mistakes" value="No Mistake" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" style="background-color: var(--bg-primary); border-color: var(--border-color);">
-                                                        <span class="text-sm" style="color: var(--text-primary);">No Mistake</span>
-                                                    </label>
+                                <!-- Main Journal Form Container -->
+                                <div class="py-4 px-3 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
+                                    <div class="flex justify-center">
+                                        <div class="w-full">
+                                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                                        <!-- Left Column - Psychology -->
+                                        <div class="p-3 rounded-md shadow-sm" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color);">
+                                            <h3 class="text-base font-semibold mb-2 border-b pb-1" style="color: var(--text-primary); border-color: var(--border-color);">Psychology</h3>
+                                            <div class="space-y-3">
+                                                <div>
+                                                    <label for="emotional-state" class="block text-xs font-medium mb-1" style="color: var(--text-secondary);">Emotional State During Trade</label>
+                                                    <select name="emotionalState" id="emotional-state" class="w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;">
+                                                        <option value="">Select Emotional state</option>
+                                                        <option value="Calm">Calm</option>
+                                                        <option value="Frustrated">Frustrated</option>
+                                                        <option value="Overconfident">Overconfident</option>
+                                                        <option value="Anxious">Anxious</option>
+                                                        <option value="Impatient">Impatient</option>
+                                                        <option value="Confident">Confident</option>
+                                                        <option value="Fearful">Fearful</option>
+                                                        <option value="Greedy">Greedy</option>
+                                                        <option value="Excited">Excited</option>
+                                                        <option value="Neutral">Neutral</option>
+                                                    </select>
+                                                </div>
+                                                <div>
+                                                    <label class="block text-xs font-medium mb-2" style="color: var(--text-secondary);">Mistake Made</label>
+                                                    <div class="grid grid-cols-2 gap-2">
+                                                        <label class="flex items-center space-x-1 cursor-pointer">
+                                                            <input type="checkbox" name="mistakes" value="Overtrading" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" style="background-color: var(--bg-primary); border-color: var(--border-color);">
+                                                            <span class="text-xs" style="color: var(--text-primary);">Overtrading</span>
+                                                        </label>
+                                                        <label class="flex items-center space-x-1 cursor-pointer">
+                                                            <input type="checkbox" name="mistakes" value="Risked Too Much" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" style="background-color: var(--bg-primary); border-color: var(--border-color);">
+                                                            <span class="text-xs" style="color: var(--text-primary);">Risked Too Much</span>
+                                                        </label>
+                                                        <label class="flex items-center space-x-1 cursor-pointer">
+                                                            <input type="checkbox" name="mistakes" value="Exited Too Late" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" style="background-color: var(--bg-primary); border-color: var(--border-color);">
+                                                            <span class="text-xs" style="color: var(--text-primary);">Exited Too Late</span>
+                                                        </label>
+                                                        <label class="flex items-center space-x-1 cursor-pointer">
+                                                            <input type="checkbox" name="mistakes" value="Ignored signals" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" style="background-color: var(--bg-primary); border-color: var(--border-color);">
+                                                            <span class="text-xs" style="color: var(--text-primary);">Ignored signals</span>
+                                                        </label>
+                                                        <label class="flex items-center space-x-1 cursor-pointer">
+                                                            <input type="checkbox" name="mistakes" value="Ignored Stop loss" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" style="background-color: var(--bg-primary); border-color: var(--border-color);">
+                                                            <span class="text-xs" style="color: var(--text-primary);">Ignored Stop loss</span>
+                                                        </label>
+                                                        <label class="flex items-center space-x-1 cursor-pointer">
+                                                            <input type="checkbox" name="mistakes" value="Revenge signals" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" style="background-color: var(--bg-primary); border-color: var(--border-color);">
+                                                            <span class="text-xs" style="color: var(--text-primary);">Revenge signals</span>
+                                                        </label>
+                                                        <label class="flex items-center space-x-1 cursor-pointer">
+                                                            <input type="checkbox" name="mistakes" value="Exited Too Early" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" style="background-color: var(--bg-primary); border-color: var(--border-color);">
+                                                            <span class="text-xs" style="color: var(--text-primary);">Exited Too Early</span>
+                                                        </label>
+                                                        <label class="flex items-center space-x-1 cursor-pointer">
+                                                            <input type="checkbox" name="mistakes" value="Revenge Trading" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" style="background-color: var(--bg-primary); border-color: var(--border-color);">
+                                                            <span class="text-xs" style="color: var(--text-primary);">Revenge Trading</span>
+                                                        </label>
+                                                        <label class="flex items-center space-x-1 cursor-pointer">
+                                                            <input type="checkbox" name="mistakes" value="No clean Plan" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" style="background-color: var(--bg-primary); border-color: var(--border-color);">
+                                                            <span class="text-xs" style="color: var(--text-primary);">No clean Plan</span>
+                                                        </label>
+                                                        <label class="flex items-center space-x-1 cursor-pointer">
+                                                            <input type="checkbox" name="mistakes" value="No Mistake" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" style="background-color: var(--bg-primary); border-color: var(--border-color);">
+                                                            <span class="text-xs" style="color: var(--text-primary);">No Mistake</span>
+                                                        </label>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- Right Column - Trade Journal & Notes -->
-                                    <div class="p-6 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
-                                        <h3 class="text-xl font-semibold mb-6 border-b pb-4" style="color: var(--text-primary); border-color: var(--border-color);">Trade Journal & Notes</h3>
-                                        <div class="space-y-4">
-                                            <p class="text-sm" style="color: var(--text-secondary);">Reason for entry/exit, learning, etc.</p>
-                                            <textarea name="reasons" id="reasons" rows="12" class="w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="What was your thesis for this trade? What did you learn?"></textarea>
+                                                <!-- Right Column - Trade Journal & Notes -->
+                                                <div class="p-3 rounded-md shadow-sm" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color);">
+                                                    <h3 class="text-base font-semibold mb-2 border-b pb-1" style="color: var(--text-primary); border-color: var(--border-color);">Trade Journal & Notes</h3>
+                                                    <div class="space-y-2">
+                                                        <p class="text-xs" style="color: var(--text-secondary);">Reason for entry/exit, learning, etc.</p>
+                                                        <textarea name="reasons" id="reasons" rows="8" class="w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;" placeholder="What was your thesis for this trade? What did you learn?"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <!-- Action Buttons -->
-                            <div class="flex justify-end gap-4 pt-4 border-t" style="border-color: var(--border-color);">
+                            <div class="flex justify-center gap-4 pt-4 border-t" style="border-color: var(--border-color);">
                                 <button type="button" id="clear-trade-form-btn" class="font-semibold py-2 px-6 rounded-md shadow-sm" style="background-color: var(--bg-tertiary); color: var(--text-secondary);">Reset</button>
                                 <button type="submit" class="btn-primary font-semibold py-2 px-6 rounded-md shadow-sm flex items-center justify-center min-w-[120px]">
                                     <span class="btn-text">Save Trade</span>
