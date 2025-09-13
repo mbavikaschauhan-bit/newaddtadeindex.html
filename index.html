@@ -1151,183 +1151,186 @@
 
                             <!-- Trade Tab Content -->
                             <div id="trade-tab-content" class="space-y-6">
-                                <!-- Trade Details and Execution Details - Centered Layout -->
-                                <div class="flex flex-col items-center space-y-4">
-                                    <!-- Trade Details Section -->
-                                    <div class="w-full max-w-4xl">
-                                        <div class="p-4 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
-                                            <h3 class="text-lg font-semibold mb-3 border-b pb-2" style="color: var(--text-primary); border-color: var(--border-color);">Trade Details</h3>
-                                            <div class="space-y-3">
-                                                <!-- Trading Style and Symbol Row -->
+                                <!-- Main Trade Form Container -->
+                                <div class="p-4 rounded-lg shadow-sm my-4 mx-2" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
+                                    <!-- Trade Details and Execution Details - Centered Layout -->
+                                    <div class="flex flex-col items-center space-y-3">
+                                        <!-- Trade Details Section -->
+                                        <div class="w-full max-w-4xl">
+                                            <div class="p-3 rounded-md shadow-sm" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color);">
+                                                <h3 class="text-base font-semibold mb-2 border-b pb-1" style="color: var(--text-primary); border-color: var(--border-color);">Trade Details</h3>
+                                                <div class="space-y-2">
+                                                    <!-- Trading Style and Symbol Row -->
+                                                    <div class="grid grid-cols-2 gap-3">
+                                                        <div>
+                                                            <label class="block text-xs font-medium mb-1" style="color: var(--text-secondary);">Trading Style</label>
+                                                            <select name="tradingStyle" id="trading-style-select" class="w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;">
+                                                                <option value="Scalping" selected>Scalping</option>
+                                                                <option value="Intraday">Intraday</option>
+                                                                <option value="Swing">Swing</option>
+                                                                <option value="Position">Position</option>
+                                                                <option value="Long-Term">Long-Term</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="relative">
+                                                            <label for="asset-input" class="block text-xs font-medium mb-1" style="color: var(--text-secondary);">Symbol</label>
+                                                            <input name="asset" type="text" id="asset-input" class="w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;" placeholder="e.g.RELIANCE,NIFTY50" required>
+                                                            <div id="asset-suggestions" class="absolute z-10 w-full rounded-md mt-1 hidden max-h-48 overflow-y-auto" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);"></div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Segment and Direction Row -->
+                                                    <div class="grid grid-cols-2 gap-3">
+                                                        <div>
+                                                            <label for="segment-input" class="block text-xs font-medium mb-1" style="color: var(--text-secondary);">Segment</label>
+                                                            <input name="segment" type="text" id="segment-input" class="w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;" value="Equity" readonly>
+                                                        </div>
+                                                        <div>
+                                                            <label class="block text-xs font-medium mb-1" style="color: var(--text-secondary);">Direction</label>
+                                                            <div id="direction-group" class="flex gap-1">
+                                                                <button type="button" data-value="Long" class="active active-long flex items-center justify-center gap-1 px-2 py-1 rounded-md border text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);">
+                                                                    <i data-feather="arrow-up" class="inline-block h-3 w-3"></i>Long
+                                                                </button>
+                                                                <button type="button" data-value="Short" class="flex items-center justify-center gap-1 px-2 py-1 rounded-md border text-sm" style="background-color: var(--bg-secondary); color: var(--text-secondary); border-color: var(--border-color);">
+                                                                    <i data-feather="arrow-down" class="inline-block h-3 w-3"></i>Short
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+
+                                        <!-- Execution Details Section -->
+                                        <div class="w-full max-w-4xl">
+                                            <div class="p-3 rounded-md shadow-sm" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color);">
+                                                <h3 class="text-base font-semibold mb-2 border-b pb-1" style="color: var(--text-primary); border-color: var(--border-color);">Execution Details</h3>
+                                                <div class="space-y-2">
+                                                    <div class="grid grid-cols-4 gap-2">
+                                                        <div>
+                                                            <label for="entry-date" class="block text-xs font-medium" style="color: var(--text-secondary);">Entry Date</label>
+                                                            <input name="entryDate" type="date" id="entry-date" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;" required>
+                                                        </div>
+                                                        <div>
+                                                            <label for="entry-time" class="block text-xs font-medium" style="color: var(--text-secondary);">Entry Time</label>
+                                                            <input name="entryTime" type="time" id="entry-time" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;" required>
+                                                        </div>
+                                                        <div>
+                                                            <label for="exit-date" class="block text-xs font-medium" style="color: var(--text-secondary);">Exit Date</label>
+                                                            <input name="exitDate" type="date" id="exit-date" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;">
+                                                        </div>
+                                                        <div>
+                                                            <label for="exit-time" class="block text-xs font-medium" style="color: var(--text-secondary);">Exit Time</label>
+                                                            <input name="exitTime" type="time" id="exit-time" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="grid grid-cols-4 gap-2">
+                                                        <div>
+                                                            <label for="entry-price" class="block text-xs font-medium" style="color: var(--text-secondary);">Entry Price</label>
+                                                            <input name="entryPrice" type="number" step="any" id="entry-price" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;" placeholder="0.00" required>
+                                                        </div>
+                                                        <div>
+                                                            <label for="quantity" class="block text-xs font-medium" style="color: var(--text-secondary);">Entry Quantity</label>
+                                                            <input name="quantity" type="number" id="quantity" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;" placeholder="0" required>
+                                                        </div>
+                                                        <div>
+                                                            <label for="exit-price" class="block text-xs font-medium" style="color: var(--text-secondary);">Exit Price</label>
+                                                            <input name="exitPrice" type="number" step="any" id="exit-price" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;" placeholder="0.00">
+                                                        </div>
+                                                        <div>
+                                                            <label for="exit-quantity" class="block text-xs font-medium" style="color: var(--text-secondary);">Exit Quantity</label>
+                                                            <input name="exitQuantity" type="number" id="exit-quantity" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;" placeholder="0">
+                                                        </div>
+                                                    </div>
+                                                    <div class="grid grid-cols-4 gap-2">
+                                                        <div>
+                                                            <label for="stop-loss" class="block text-xs font-medium" style="color: var(--text-secondary);">Stop loss</label>
+                                                            <input name="stopLoss" type="number" step="any" id="stop-loss" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;" placeholder="0.00">
+                                                        </div>
+                                                        <div>
+                                                            <label for="target" class="block text-xs font-medium" style="color: var(--text-secondary);">Target price</label>
+                                                            <input name="target" type="number" step="any" id="target" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;" placeholder="0.00">
+                                                        </div>
+                                                        <div>
+                                                            <label for="brokerage" class="block text-xs font-medium" style="color: var(--text-secondary);">Brokerage</label>
+                                                            <input name="brokerage" type="number" step="any" id="brokerage" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;" placeholder="0.00">
+                                                        </div>
+                                                        <div>
+                                                            <label for="other-fees" class="block text-xs font-medium" style="color: var(--text-secondary);">Charges</label>
+                                                            <input name="otherFees" type="number" step="any" id="other-fees" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;" placeholder="0.00">
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Total Amount and P&L Summary - Same Line -->
+                                                    <div class="grid grid-cols-2 gap-2 mt-2">
+                                                        <div class="p-2 rounded-sm shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
+                                                            <div class="flex justify-between items-center">
+                                                                <span class="text-xs font-medium" style="color: var(--text-muted);">Total Amount</span>
+                                                                <span id="total-amount" class="font-bold text-sm" style="color: var(--text-primary);">₹0.00</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="p-2 rounded-sm shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
+                                                            <div class="space-y-1">
+                                                                <div class="flex justify-between items-center">
+                                                                    <span class="text-xs font-medium" style="color: var(--text-muted);">Gross P&L</span>
+                                                                    <span id="gross-pnl-amount" class="font-bold text-xs" style="color: var(--text-primary);">₹0.00</span>
+                                                                </div>
+                                                                <div class="flex justify-between items-center">
+                                                                    <span class="text-xs font-medium" style="color: var(--text-muted);">Total Charges</span>
+                                                                    <span id="total-charges" class="font-bold text-xs text-red-500">₹0.00</span>
+                                                                </div>
+                                                                <div class="flex justify-between items-center">
+                                                                    <span class="text-xs font-medium" style="color: var(--text-muted);">Net P&L Amount</span>
+                                                                    <span id="pnl-amount" class="font-bold text-xs" style="color: var(--text-primary);">₹0.00</span>
+                                                                </div>
+                                                                <div class="flex justify-between items-center">
+                                                                    <span class="text-xs font-medium" style="color: var(--text-muted);">P&L (%)</span>
+                                                                    <span id="pnl-percent" class="font-bold text-xs" style="color: var(--text-primary);">0.00%</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+
+                                    <!-- Strategy and Outcome Section - Centered below Execution Details -->
+                                    <div class="flex justify-center mt-3">
+                                        <div class="w-full max-w-4xl">
+                                            <div class="p-3 rounded-md shadow-sm" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color);">
+                                                <h3 class="text-base font-semibold mb-2 border-b pb-1" style="color: var(--text-primary); border-color: var(--border-color);">Strategy and Outcome</h3>
                                                 <div class="grid grid-cols-2 gap-3">
                                                     <div>
-                                                        <label class="block text-xs font-medium mb-1" style="color: var(--text-secondary);">Trading Style</label>
-                                                        <select name="tradingStyle" id="trading-style-select" class="w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;">
-                                                            <option value="Scalping" selected>Scalping</option>
-                                                            <option value="Intraday">Intraday</option>
-                                                            <option value="Swing">Swing</option>
-                                                            <option value="Position">Position</option>
-                                                            <option value="Long-Term">Long-Term</option>
+                                                        <label for="strategy" class="block text-xs font-medium mb-1" style="color: var(--text-secondary);">Strategy Tag</label>
+                                                        <select name="strategy" id="strategy" class="w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;">
+                                                            <option value="Price Action" selected>Price Action</option>
+                                                            <option value="Trend Following">Trend Following</option>
+                                                            <option value="Breakout">Breakout</option>
+                                                            <option value="Reversal">Reversal</option>
+                                                            <option value="Scalping">Scalping</option>
+                                                            <option value="Swing Trading">Swing Trading</option>
+                                                            <option value="Support/Resistance">Support/Resistance</option>
+                                                            <option value="Moving Average">Moving Average</option>
+                                                            <option value="RSI Strategy">RSI Strategy</option>
+                                                            <option value="MACD Strategy">MACD Strategy</option>
+                                                            <option value="News Based">News Based</option>
+                                                            <option value="Other">Other</option>
                                                         </select>
                                                     </div>
-                                                    <div class="relative">
-                                                        <label for="asset-input" class="block text-xs font-medium mb-1" style="color: var(--text-secondary);">Symbol</label>
-                                                        <input name="asset" type="text" id="asset-input" class="w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;" placeholder="e.g.RELIANCE,NIFTY50" required>
-                                                        <div id="asset-suggestions" class="absolute z-10 w-full rounded-md mt-1 hidden max-h-48 overflow-y-auto" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);"></div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <!-- Segment and Direction Row -->
-                                                <div class="grid grid-cols-2 gap-3">
                                                     <div>
-                                                        <label for="segment-input" class="block text-xs font-medium mb-1" style="color: var(--text-secondary);">Segment</label>
-                                                        <input name="segment" type="text" id="segment-input" class="w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;" value="Equity" readonly>
+                                                        <label for="outcome-summary" class="block text-xs font-medium mb-1" style="color: var(--text-secondary);">Outcome Summary</label>
+                                                        <select name="outcomeSummary" id="outcome-summary" class="w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;">
+                                                            <option>Select outcome summary</option>
+                                                            <option>Target Hit</option>
+                                                            <option>Stop Loss Hit</option>
+                                                            <option>Exited Early (Profit)</option>
+                                                            <option>Exited Early (Loss)</option>
+                                                            <option>Break Even</option>
+                                                        </select>
                                                     </div>
-                                                    <div>
-                                                        <label class="block text-xs font-medium mb-1" style="color: var(--text-secondary);">Direction</label>
-                                                        <div id="direction-group" class="flex gap-1">
-                                                            <button type="button" data-value="Long" class="active active-long flex items-center justify-center gap-1 px-2 py-1 rounded-md border text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);">
-                                                                <i data-feather="arrow-up" class="inline-block h-3 w-3"></i>Long
-                                                            </button>
-                                                            <button type="button" data-value="Short" class="flex items-center justify-center gap-1 px-2 py-1 rounded-md border text-sm" style="background-color: var(--bg-secondary); color: var(--text-secondary); border-color: var(--border-color);">
-                                                                <i data-feather="arrow-down" class="inline-block h-3 w-3"></i>Short
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-
-                                    <!-- Execution Details Section -->
-                                    <div class="w-full max-w-4xl">
-                                        <div class="p-4 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
-                                            <h3 class="text-lg font-semibold mb-3 border-b pb-2" style="color: var(--text-primary); border-color: var(--border-color);">Execution Details</h3>
-                                            <div class="space-y-2">
-                                                <div class="grid grid-cols-4 gap-2">
-                                                    <div>
-                                                        <label for="entry-date" class="block text-xs font-medium" style="color: var(--text-secondary);">Entry Date</label>
-                                                        <input name="entryDate" type="date" id="entry-date" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;" required>
-                                                    </div>
-                                                    <div>
-                                                        <label for="entry-time" class="block text-xs font-medium" style="color: var(--text-secondary);">Entry Time</label>
-                                                        <input name="entryTime" type="time" id="entry-time" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;" required>
-                                                    </div>
-                                                    <div>
-                                                        <label for="exit-date" class="block text-xs font-medium" style="color: var(--text-secondary);">Exit Date</label>
-                                                        <input name="exitDate" type="date" id="exit-date" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;">
-                                                    </div>
-                                                    <div>
-                                                        <label for="exit-time" class="block text-xs font-medium" style="color: var(--text-secondary);">Exit Time</label>
-                                                        <input name="exitTime" type="time" id="exit-time" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;">
-                                                    </div>
-                                                </div>
-                                                <div class="grid grid-cols-4 gap-2">
-                                                    <div>
-                                                        <label for="entry-price" class="block text-xs font-medium" style="color: var(--text-secondary);">Entry Price</label>
-                                                        <input name="entryPrice" type="number" step="any" id="entry-price" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;" placeholder="0.00" required>
-                                                    </div>
-                                                    <div>
-                                                        <label for="quantity" class="block text-xs font-medium" style="color: var(--text-secondary);">Entry Quantity</label>
-                                                        <input name="quantity" type="number" id="quantity" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;" placeholder="0" required>
-                                                    </div>
-                                                    <div>
-                                                        <label for="exit-price" class="block text-xs font-medium" style="color: var(--text-secondary);">Exit Price</label>
-                                                        <input name="exitPrice" type="number" step="any" id="exit-price" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;" placeholder="0.00">
-                                                    </div>
-                                                    <div>
-                                                        <label for="exit-quantity" class="block text-xs font-medium" style="color: var(--text-secondary);">Exit Quantity</label>
-                                                        <input name="exitQuantity" type="number" id="exit-quantity" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;" placeholder="0">
-                                                    </div>
-                                                </div>
-                                                <div class="grid grid-cols-4 gap-2">
-                                                    <div>
-                                                        <label for="stop-loss" class="block text-xs font-medium" style="color: var(--text-secondary);">Stop loss</label>
-                                                        <input name="stopLoss" type="number" step="any" id="stop-loss" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;" placeholder="0.00">
-                                                    </div>
-                                                    <div>
-                                                        <label for="target" class="block text-xs font-medium" style="color: var(--text-secondary);">Target price</label>
-                                                        <input name="target" type="number" step="any" id="target" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;" placeholder="0.00">
-                                                    </div>
-                                                    <div>
-                                                        <label for="brokerage" class="block text-xs font-medium" style="color: var(--text-secondary);">Brokerage</label>
-                                                        <input name="brokerage" type="number" step="any" id="brokerage" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;" placeholder="0.00">
-                                                    </div>
-                                                    <div>
-                                                        <label for="other-fees" class="block text-xs font-medium" style="color: var(--text-secondary);">Charges</label>
-                                                        <input name="otherFees" type="number" step="any" id="other-fees" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;" placeholder="0.00">
-                                                    </div>
-                                                </div>
-                                                
-                                                <!-- Total Amount and P&L Summary - Same Line -->
-                                                <div class="grid grid-cols-2 gap-2 mt-2">
-                                                    <div class="p-2 rounded-md shadow-sm" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color);">
-                                                        <div class="flex justify-between items-center">
-                                                            <span class="text-xs font-medium" style="color: var(--text-muted);">Total Amount</span>
-                                                            <span id="total-amount" class="font-bold text-sm" style="color: var(--text-primary);">₹0.00</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="p-2 rounded-md shadow-sm" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color);">
-                                                        <div class="space-y-1">
-                                                            <div class="flex justify-between items-center">
-                                                                <span class="text-xs font-medium" style="color: var(--text-muted);">Gross P&L</span>
-                                                                <span id="gross-pnl-amount" class="font-bold text-xs" style="color: var(--text-primary);">₹0.00</span>
-                                                            </div>
-                                                            <div class="flex justify-between items-center">
-                                                                <span class="text-xs font-medium" style="color: var(--text-muted);">Total Charges</span>
-                                                                <span id="total-charges" class="font-bold text-xs text-red-500">₹0.00</span>
-                                                            </div>
-                                                            <div class="flex justify-between items-center">
-                                                                <span class="text-xs font-medium" style="color: var(--text-muted);">Net P&L Amount</span>
-                                                                <span id="pnl-amount" class="font-bold text-xs" style="color: var(--text-primary);">₹0.00</span>
-                                                            </div>
-                                                            <div class="flex justify-between items-center">
-                                                                <span class="text-xs font-medium" style="color: var(--text-muted);">P&L (%)</span>
-                                                                <span id="pnl-percent" class="font-bold text-xs" style="color: var(--text-primary);">0.00%</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-
-                                <!-- Strategy and Outcome Section - Centered below Execution Details -->
-                                <div class="flex justify-center">
-                                    <div class="w-full max-w-4xl">
-                                        <div class="p-4 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
-                                            <h3 class="text-lg font-semibold mb-3 border-b pb-2" style="color: var(--text-primary); border-color: var(--border-color);">Strategy and Outcome</h3>
-                                            <div class="grid grid-cols-2 gap-3">
-                                                <div>
-                                                    <label for="strategy" class="block text-xs font-medium mb-1" style="color: var(--text-secondary);">Strategy Tag</label>
-                                                    <select name="strategy" id="strategy" class="w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;">
-                                                        <option value="Price Action" selected>Price Action</option>
-                                                        <option value="Trend Following">Trend Following</option>
-                                                        <option value="Breakout">Breakout</option>
-                                                        <option value="Reversal">Reversal</option>
-                                                        <option value="Scalping">Scalping</option>
-                                                        <option value="Swing Trading">Swing Trading</option>
-                                                        <option value="Support/Resistance">Support/Resistance</option>
-                                                        <option value="Moving Average">Moving Average</option>
-                                                        <option value="RSI Strategy">RSI Strategy</option>
-                                                        <option value="MACD Strategy">MACD Strategy</option>
-                                                        <option value="News Based">News Based</option>
-                                                        <option value="Other">Other</option>
-                                                    </select>
-                                                </div>
-                                                <div>
-                                                    <label for="outcome-summary" class="block text-xs font-medium mb-1" style="color: var(--text-secondary);">Outcome Summary</label>
-                                                    <select name="outcomeSummary" id="outcome-summary" class="w-full rounded-md border focus:border-blue-500 focus:ring-blue-500 text-sm" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color); padding: 0.375rem;">
-                                                        <option>Select outcome summary</option>
-                                                        <option>Target Hit</option>
-                                                        <option>Stop Loss Hit</option>
-                                                        <option>Exited Early (Profit)</option>
-                                                        <option>Exited Early (Loss)</option>
-                                                        <option>Break Even</option>
-                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
